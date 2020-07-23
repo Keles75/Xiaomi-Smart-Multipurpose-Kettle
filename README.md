@@ -6,7 +6,7 @@
  * @LastEditors   : fineemb
  * @LastEditTime  : 2020-01-31 23:18:09
  -->
-# Xiaomi Smart Multipurpose Kettle
+# Mi Smart Multipurpose Kettle
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 
@@ -32,7 +32,7 @@ Credits: Thanks to [Rytilahti](https://github.com/rytilahti/python-miio) for all
   - curr_tempe
   - mode (Mode ID)
   - mode_en (Mode Name for English)
-  - mode_cn (中文模式名称)
+  - mode_cn (Mode Name for Russian)
   - heat_power
   - warm_time
   - cook_time
@@ -59,7 +59,7 @@ Credits: Thanks to [Rytilahti](https://github.com/rytilahti/python-miio) for all
 health_pot: 
   host: 192.168.1.13
   token: a9bd32552dc9bd4e156954c20ddbcb38
-  name: 养生壶
+  name: Чайник
   model: viomi.health_pot.v1
   scan_interval: 10
 ```
