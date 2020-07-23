@@ -1,10 +1,10 @@
 '''
 @Author        : fineemb
 @Github        : https://github.com/fineemb
-@Description   : run_status: 16(未放置杯体No kettle placed)0(正常)32(干烧保护Drycooking protection)48(两个错误一起)
-@Date          : 2019-12-15 17:14:14
-@LastEditors   : fineemb
-@LastEditTime  : 2020-02-02 22:03:56
+@Description   : run_status: 16(No kettle placed)0(Normal)32(Drycooking protection)48(Two errors together)
+@Date          : 2020-07-23 17:14:14
+@LastEditors   : Keles75
+@LastEditTime  : 2020-07-23 17:14:14
 '''
 from collections import defaultdict
 import asyncio
@@ -44,30 +44,30 @@ STATE_3 = "3"
 STATE_4 = "4"
 STATE_5 = "5"
 
-MODE_11 = "Herbal tea" # 花草茶
-MODE_12 = "Fruit tea" # 水果茶
-MODE_13 = "Simmered soup" # 煲汤
-MODE_14 = "Medicinal food" # 药膳
-MODE_15 = "Congee" # 粥品
-MODE_16 = "Edible bird's nest" # 燕窝
-MODE_17 = "Hotpot" # 火锅
-MODE_18 = "boiled_water" # 烧水
-MODE_19 = "Warm milk" # 温奶
-MODE_20 = "Soft-boiled egg" # 温泉蛋
-MODE_21 = "Yogurt" # 酸奶
-MODE_22 = "Steamed egg" # 蒸水蛋
-MODE_23 = "brewed_tea" # 煮茶
-MODE_24 = "Ganoderma" # 灵芝
-MODE_25 = "Disinfect" # 消毒
-MODE_26 = "Sweet soup" # 糖水
-MODE_1 = "Custom1" # 自定义1
-MODE_2 = "Custom2" # 自定义2
-MODE_3 = "Custom3" # 自定义3
-MODE_4 = "Custom4" # 自定义4
-MODE_5 = "Custom5" # 自定义5
-MODE_6 = "Custom6" # 自定义6
-MODE_7 = "Custom7" # 自定义7
-MODE_8 = "Custom8" # 自定义8
+MODE_11 = "Herbal tea" # Травяной чай
+MODE_12 = "Fruit tea" # фруктовый чай
+MODE_13 = "Simmered soup" # Суп
+MODE_14 = "Medicinal food" # Лечебная диета
+MODE_15 = "Congee" # Congee
+MODE_16 = "Edible bird's nest" # Edible bird's nest
+MODE_17 = "Hotpot" # Hotpot
+MODE_18 = "boiled_water" # Вскипятить воду
+MODE_19 = "Warm milk" # Теплое молоко
+MODE_20 = "Soft-boiled egg" # Яйца в смятку
+MODE_21 = "Yogurt" # Yogurt
+MODE_22 = "Steamed egg" # Яйца в крутую
+MODE_23 = "brewed_tea" # Заварить чай
+MODE_24 = "Ganoderma" # Ganoderma
+MODE_25 = "Disinfect" # Disinfect
+MODE_26 = "Sweet soup" # Sweet soup
+MODE_1 = "Custom1" # Custom1
+MODE_2 = "Custom2" # Custom2
+MODE_3 = "Custom3" # Custom3
+MODE_4 = "Custom4" # Custom4
+MODE_5 = "Custom5" # Custom5
+MODE_6 = "Custom6" # Custom6
+MODE_7 = "Custom7" # Custom7
+MODE_8 = "Custom8" # Custom8
 
 SERVICE_SET_VOICE = "set_voice"
 SERVICE_SET_WORK = "set_work"
@@ -210,12 +210,12 @@ def setup(hass, config):
             last_temp     =  miio_device.send('get_prop', ["last_temp"])[0]
             curr_tempe    =  miio_device.send('get_prop', ["curr_tempe"])[0]
             # work_temps    =  miio_device.send('get_prop', ["work_temps"])[0]
-            mode          =  miio_device.send('get_prop', ["mode"])[0] #模式
-            heat_power    =  miio_device.send('get_prop', ["heat_power"])[0] #功率
-            warm_time     =  miio_device.send('get_prop', ["warm_time"])[0] #保温时间
-            cook_time     =  miio_device.send('get_prop', ["cook_time"])[0] #蒸煮时间
-            left_time     =  miio_device.send('get_prop', ["left_time"])[0] #剩余时间
-            cook_status   =  miio_device.send('get_prop', ["cook_status"])[0] #蒸煮状态
+            mode          =  miio_device.send('get_prop', ["mode"])[0]
+            heat_power    =  miio_device.send('get_prop', ["heat_power"])[0]
+            warm_time     =  miio_device.send('get_prop', ["warm_time"])[0] 
+            cook_time     =  miio_device.send('get_prop', ["cook_time"])[0]
+            left_time     =  miio_device.send('get_prop', ["left_time"])[0]
+            cook_status   =  miio_device.send('get_prop', ["cook_status"])[0]
             cooked_time   =  miio_device.send('get_prop', ["cooked_time"])[0]
             voice         =  miio_device.send('get_prop', ["voice"])[0]
             stand_top_num =  miio_device.send('get_prop', ["stand_top_num"])[0]
@@ -243,122 +243,122 @@ def setup(hass, config):
             # __work_temps = int(work_temps)
 
             if work_status == 1:
-                # 预约
+                # Reservation
                 __current_operation = STATE_1
-                __work_status_cn = "预约"
+                __work_status_cn = "Reservation"
             elif work_status == 2:
                 # 烹饪
                 __current_operation = STATE_2
-                __work_status_cn = "烹饪"
+                __work_status_cn = "Готовка"
             elif work_status == 3:
-                # 暂停
+                # Пауза
                 __current_operation = STATE_3
-                __work_status_cn = "暂停"
+                __work_status_cn = "Пауза"
             elif work_status == 4:
-                # 保温
+                # Подогрев
                 __current_operation = STATE_4
-                __work_status_cn = "保温"
+                __work_status_cn = "Подогрев"
             elif work_status == 5:
-                # 终止
+                # Стоп
                 __current_operation = STATE_4
-                __work_status_cn = "终止"
+                __work_status_cn = "Стоп"
 
             if mode == 11:
-                # 花草茶
+                # Травяной чай
                 __mode_en = MODE_11
-                __mode_cn = "花草茶"
+                __mode_cn = "Травяной чай"
             elif mode == 12:
-                # 水果茶
+                # фруктовый чай
                 __mode_en = MODE_12
-                __mode_cn = "水果茶"
+                __mode_cn = "Фруктовый чай"
             elif mode == 13:
-                # 煲汤
+                # Суп
                 __mode_en = MODE_13
-                __mode_cn = "煲汤"
+                __mode_cn = "Суп"
             elif mode == 14:
-                # 药膳
+                # Лечебная диета
                 __mode_en = MODE_14
-                __mode_cn = "药膳"
+                __mode_cn = "Лечебная диета"
             elif mode == 15:
-                # 粥品
+                # Congee
                 __mode_en = MODE_15
-                __mode_cn = "粥品"
+                __mode_cn = "Congee"
             elif mode == 16:
-                # 燕窝
+                # Edible bird's nest
                 __mode_en = MODE_16
-                __mode_cn = "燕窝"
+                __mode_cn = "Edible bird's nest"
             elif mode == 17:
-                # 火锅
+                # Hotpot
                 __mode_en = MODE_17
-                __mode_cn = "火锅"
+                __mode_cn = "Hotpot"
             elif mode == 18:
-                # 烧水
+                # Кипячение
                 __mode_en = MODE_18
-                __mode_cn = "烧水"
+                __mode_cn = "Кипячение"
             elif mode == 19:
-                # 温奶
+                # Теплое молоко
                 __mode_en = MODE_19
-                __mode_cn = "温奶"
+                __mode_cn = "Теплое молоко"
             elif mode == 20:
-                # 温泉蛋
+                # Яйца в смятку
                 __mode_en = MODE_20
-                __mode_cn = "温泉蛋"
+                __mode_cn = "Яйца в смятку"
             elif mode == 21:
-                # 酸奶
+                # Йогурт
                 __mode_en = MODE_21
-                __mode_cn = "酸奶"
+                __mode_cn = "Йогурт"
             elif mode == 22:
-                # 蒸水蛋
+                # Яйца в крутую
                 __mode_en = MODE_22
-                __mode_cn = "蒸水蛋"
+                __mode_cn = "Яйца в крутую"
             elif mode == 23:
-                # 煮茶
+                # Заварить чай
                 __mode_en = MODE_23
-                __mode_cn = "煮茶"
+                __mode_cn = "Заварить чай"
             elif mode == 24:
-                # 灵芝
+                # Ganoderma
                 __mode_en = MODE_24
-                __mode_cn = "灵芝"
+                __mode_cn = "Ganoderma"
             elif mode == 25:
-                # 消毒
+                # Disinfect
                 __mode_en = MODE_25
-                __mode_cn = "消毒"
+                __mode_cn = "Disinfect"
             elif mode == 26:
-                # 糖水
+                # Sweet soup
                 __mode_en = MODE_26
-                __mode_cn = "糖水"
+                __mode_cn = "Sweet soup"
             elif mode == 1:
-                # 自定义
+                # Custom
                 __mode_en = MODE_1
-                __mode_cn = "自定义1"
+                __mode_cn = "Custom1"
             elif mode == 2:
-                # 自定义
+                # Custom
                 __mode_en = MODE_2
-                __mode_cn = "自定义2"
+                __mode_cn = "Custom2"
             elif mode == 3:
                 # 自定义
                 __mode_en = MODE_3
-                __mode_cn = "自定义3"
+                __mode_cn = "Custom3"
             elif mode == 4:
                 # 自定义
                 __mode_en = MODE_4
-                __mode_cn = "自定义4"
+                __mode_cn = "Custom4"
             elif mode == 5:
                 # 自定义
                 __mode_en = MODE_5
-                __mode_cn = "自定义5"
+                __mode_cn = "Custom5"
             elif mode == 6:
                 # 自定义
                 __mode_en = MODE_6
-                __mode_cn = "自定义6"
+                __mode_cn = "Custom6"
             elif mode == 7:
                 # 自定义
                 __mode_en = MODE_7
-                __mode_cn = "自定义7"
+                __mode_cn = "Custom7"
             elif mode == 8:
                 # 自定义
                 __mode_en = MODE_8
-                __mode_cn = "自定义8"
+                __mode_cn = "Custom8"
 
             __state_attrs = {
                 "run_status":run_status,
