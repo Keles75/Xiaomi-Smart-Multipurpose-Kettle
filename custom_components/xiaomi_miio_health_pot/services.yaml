@@ -9,65 +9,65 @@
 
 
 set_voice:
-  description: Set the buzzer。
+  description: 'Set the buzzer'
   fields:
     entity_id:
-      description: Designated health pot ID.
+      description: 'Designated health pot ID.'
       example: 'health_pot.ysh'
     voice:
-      description: Set switch, on/off.
+      description: 'Set switch, on/off.'
       example: 'on'
 set_work:
-  description: Specify the working mode, or close. You can specify the heat preservation temperature and duration, as well as the appointment time
+  description: 'Specify the working mode, or close. You can specify the heat preservation temperature and duration, as well as the appointment time.'
   fields:
     entity_id:
-      description: Designated health pot ID.
+      description: 'Designated health pot ID.'
       example: 'health_pot.ysh'
     status:
-      description: Set the working status, 1-5 (1: Appointment, 2: Cooking, 3: Pause, 4: Keep warm, 5: Termination).
+      description: 'Set the working status, 1-5 (1: Appointment, 2: Cooking, 3: Pause, 4: Keep warm, 5: Termination).'
       example: '2'
     id: 
-      description: Mode id, there can be 24 modes. 1-8 and 11-26
+      description: 'Mode id, there can be 24 modes. 1-8 and 11-26'
       example: '8'
     keep_temp: 
-      description: Holding temperature,1-99
+      description: 'Holding temperature,1-99'
       example: '80'
     keep_time: 
-      description: Holding time, the unit is hour 1-12
+      description: 'Holding time, the unit is hour 1-12'
       example: '12'
     timestamp: 
-      description: The timestamp of the appointment start time
+      description: 'The timestamp of the appointment start time'
       example: '1580483303'
 delete_modes:
-  description: Delete the specified custom mode
+  description: 'Delete the specified custom mode'
   fields:
     entity_id:
-      description: Designated health pot ID.
+      description: 'Designated health pot ID.'
       example: 'health_pot.ysh'
     modes:
-      description: Mode id, there are 7 custom modes. 1-8
+      description: 'Mode id, there are 7 custom modes. 1-8'
       example: '1'
 set_mode_sort:
-  description: Set mode sort
+  description: 'Set mode sort'
   fields:
     entity_id:
-      description: Designated health pot ID.
+      description: 'Designated health pot ID.'
       example: 'health_pot.ysh'
     sort:
-      description: Order of all mode IDs
+      description: 'Order of all mode IDs'
       example: '11-12-13-23-15-16-17-18-20-26-21-14-19-25-24-22-1-2'
 set_mode:
-  description: Configure custom mode properties. Can specify firepower and duration
+  description: 'Configure custom mode properties. Can specify firepower and duration'
   fields:
     entity_id:
-      description: Designated health pot ID.
+      description: 'Designated health pot ID.'
       example: 'health_pot.ysh'
     id: 
-      description: Mode id, there can be 7 custom modes. 1-8
+      description: 'Mode id, there can be 7 custom modes. 1-8'
       example: '1'
     heat: 
-      description: Firepower,1-99
+      description: 'Firepower,1-99'
       example: '99'
     time: 
-      description: Duration, in minutes
+      description: 'Duration, in minutes'
       example: '60'
