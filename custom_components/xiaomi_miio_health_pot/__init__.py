@@ -53,12 +53,12 @@ MODE_16 = "Edible bird's nest" # Edible bird's nest
 MODE_17 = "Hotpot" # Hotpot
 MODE_18 = "boiled_water" # Вскипятить воду
 MODE_19 = "Warm milk" # Теплое молоко
-MODE_20 = "Soft-boiled egg" # Яйца в смятку
+MODE_20 = "Soft-boiled egg" # Яйца всмятку
 MODE_21 = "Yogurt" # Yogurt
-MODE_22 = "Steamed egg" # Яйца в крутую
+MODE_22 = "Steamed egg" # Яйца вкрутую
 MODE_23 = "brewed_tea" # Заварить чай
 MODE_24 = "Ganoderma" # Ganoderma
-MODE_25 = "Disinfect" # Disinfect
+MODE_25 = "Disinfect" # Дезинфицировать
 MODE_26 = "Sweet soup" # Sweet soup
 MODE_1 = "Custom1" # Custom1
 MODE_2 = "Custom2" # Custom2
@@ -302,7 +302,7 @@ def setup(hass, config):
             elif mode == 20:
                 # Яйца в смятку
                 __mode_en = MODE_20
-                __mode_cn = "Яйца в смятку"
+                __mode_cn = "Яйца всмятку"
             elif mode == 21:
                 # Йогурт
                 __mode_en = MODE_21
@@ -310,7 +310,7 @@ def setup(hass, config):
             elif mode == 22:
                 # Яйца в крутую
                 __mode_en = MODE_22
-                __mode_cn = "Яйца в крутую"
+                __mode_cn = "Яйца вкрутую"
             elif mode == 23:
                 # Заварить чай
                 __mode_en = MODE_23
@@ -322,7 +322,7 @@ def setup(hass, config):
             elif mode == 25:
                 # Disinfect
                 __mode_en = MODE_25
-                __mode_cn = "Disinfect"
+                __mode_cn = "Дезинфицировать"
             elif mode == 26:
                 # Sweet soup
                 __mode_en = MODE_26
